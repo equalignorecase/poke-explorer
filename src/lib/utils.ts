@@ -17,10 +17,18 @@ export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1).replace(/-/g, " ");
 }
 
+/**
+ * Returns the Japanese version name in English alphabet (Romaji),
+ * falling back to English Pokémon name if unavailable.
+ */
 export function getDisplayName(pokemon?: {
   name: string;
   japaneseName?: JapaneseName;
 } | null): string {
   if (!pokemon) return "";
-  return pokemon.japaneseName?.katakana || capitalize(pokemon.name);
+  const romaji = pokemon.japaneseName?.romaji;
+  if (romaji && romaji.trim()) {
+    return capitalize(romaji);
+  }
+  return capitalize(pokemon.name);
 }

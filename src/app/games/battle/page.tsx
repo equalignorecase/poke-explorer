@@ -27,14 +27,14 @@ import {
   Skull,
 } from "lucide-react";
 
-// Pre-defined champion choices for quick start (Japanese Katakana)
+// Pre-defined champion choices for quick start (Japanese Romaji)
 const CHAMPION_OPTIONS = [
-  { id: 25, name: "ピカチュウ" },
-  { id: 6, name: "リザードン" },
-  { id: 9, name: "カメックス" },
-  { id: 3, name: "フシギバナ" },
-  { id: 94, name: "ゲンガー" },
-  { id: 448, name: "ルカリオ" },
+  { id: 25, name: "Pikachu" },
+  { id: 6, name: "Lizardon" },
+  { id: 9, name: "Kamex" },
+  { id: 3, name: "Fushigibana" },
+  { id: 94, name: "Gangar" },
+  { id: 448, name: "Lucario" },
 ];
 
 export default function BattleSimulatorPage() {
