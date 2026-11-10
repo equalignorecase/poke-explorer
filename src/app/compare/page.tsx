@@ -7,7 +7,7 @@ import { PokemonDetailData } from "@/lib/pokeapi/types";
 import { PokemonArtwork } from "@/components/pokemon/PokemonArtwork";
 import { PokemonTypeBadge } from "@/components/pokemon/PokemonTypeBadge";
 import { PokemonStatBar } from "@/components/pokemon/PokemonStatBar";
-import { capitalize, formatPokemonId } from "@/lib/utils";
+import { formatPokemonId, getDisplayName } from "@/lib/utils";
 import {
   Search,
   ShieldAlert,
@@ -139,8 +139,8 @@ function CompareContent() {
                 <span className="font-mono text-xs text-slate-400">
                   {formatPokemonId(pokemonA.id)}
                 </span>
-                <h3 className="text-2xl font-black text-slate-900 mt-0.5">
-                  {capitalize(pokemonA.name)}
+                <h3 className="text-2xl font-black text-slate-900 mt-0.5 font-sans">
+                  {getDisplayName(pokemonA)}
                 </h3>
                 <div className="flex gap-1.5 mt-2">
                   {pokemonA.types.map((type) => (
@@ -228,8 +228,8 @@ function CompareContent() {
                 <span className="font-mono text-xs text-slate-400">
                   {formatPokemonId(pokemonB.id)}
                 </span>
-                <h3 className="text-2xl font-black text-slate-900 mt-0.5">
-                  {capitalize(pokemonB.name)}
+                <h3 className="text-2xl font-black text-slate-900 mt-0.5 font-sans">
+                  {getDisplayName(pokemonB)}
                 </h3>
                 <div className="flex gap-1.5 mt-2">
                   {pokemonB.types.map((type) => (

@@ -12,20 +12,18 @@ import {
   getRandomPokemonId,
   generateQuizOptions,
 } from "@/lib/games/engine";
-import { capitalize } from "@/lib/utils";
+import { getDisplayName } from "@/lib/utils";
+import { JapaneseName } from "@/lib/pokeapi/types";
 import {
   Volume2,
-  VolumeX,
-  Play,
-  RotateCcw,
   Loader2,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 
 interface OptionItem {
   id: number;
   name: string;
+  japaneseName?: JapaneseName;
 }
 
 export default function CryQuizPage() {
@@ -39,7 +37,7 @@ export default function CryQuizPage() {
   const [currentPokemon, setCurrentPokemon] = useState<{
     id: number;
     name: string;
-    japaneseName?: { katakana: string; romaji: string };
+    japaneseName?: JapaneseName;
     artwork: string;
     cryUrl: string;
   } | null>(null);
@@ -105,11 +103,19 @@ export default function CryQuizPage() {
 
         const cryUrl = correctData.cries?.latest || correctData.cries?.legacy;
         if (!cryUrl) {
-          continue; // Re-roll if this Pokémon lacks sound
+          continue;
         }
 
-        const correctOption: OptionItem = { id: correctData.id, name: correctData.name };
-        const wrongOptions: OptionItem[] = wrongData.map((w) => ({ id: w.id, name: w.name }));
+        const correctOption: OptionItem = {
+          id: correctData.id,
+          name: correctData.name,
+          japaneseName: correctData.japaneseName,
+        };
+        const wrongOptions: OptionItem[] = wrongData.map((w) => ({
+          id: w.id,
+          name: w.name,
+          japaneseName: w.japaneseName,
+        }));
         const quizChoices = generateQuizOptions(correctOption, wrongOptions, 4);
 
         setCurrentPokemon({
@@ -246,7 +252,7 @@ export default function CryQuizPage() {
               </div>
             )}
 
-            {/* Answer Choices */}
+            {/* Answer Choices in Japanese Katakana */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
               {options.map((opt, idx) => {
                 let state: "default" | "correct" | "incorrect" | "selected" = "default";
@@ -261,7 +267,7 @@ export default function CryQuizPage() {
                 return (
                   <AnswerButton
                     key={opt.id}
-                    label={capitalize(opt.name)}
+                    label={getDisplayName(opt)}
                     shortcutIndex={idx + 1}
                     state={state}
                     disabled={isAnswered}
@@ -273,19 +279,12 @@ export default function CryQuizPage() {
 
             {/* Post-answer feedback */}
             {isAnswered && (
-              <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
-                <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                  <span className="text-xs font-bold text-slate-800">
-                    {selectedAnswer === currentPokemon.id
-                      ? `${t.games.guess.correct} ${capitalize(currentPokemon.name)}!`
-                      : `${t.games.guess.wrong} ${capitalize(currentPokemon.name)}.`}
-                  </span>
-                  {currentPokemon.japaneseName && (
-                    <span className="text-[11px] font-semibold text-slate-500 mt-0.5">
-                      🇯🇵 {currentPokemon.japaneseName.katakana} ({currentPokemon.japaneseName.romaji})
-                    </span>
-                  )}
-                </div>
+              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100">
+                <span className="text-sm font-bold text-slate-800 font-sans">
+                  {selectedAnswer === currentPokemon.id
+                    ? `${t.games.guess.correct} ${getDisplayName(currentPokemon)}!`
+                    : `${t.games.guess.wrong} ${getDisplayName(currentPokemon)}.`}
+                </span>
 
                 <button
                   type="button"
@@ -303,4 +302,3 @@ export default function CryQuizPage() {
     </div>
   );
 }
-

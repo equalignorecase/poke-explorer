@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { GameHeader } from "@/components/games/GameHeader";
 import { GameResult } from "@/components/games/GameResult";
 import { GameDifficulty, getRandomPokemonId, shuffleArray } from "@/lib/games/engine";
-import { capitalize } from "@/lib/utils";
+import { capitalize, getDisplayName } from "@/lib/utils";
 import { Loader2, Timer, Footprints, RotateCcw } from "lucide-react";
 
 interface MemoryCard {
@@ -69,11 +69,12 @@ export default function MemoryGamePage() {
 
       const deck: MemoryCard[] = [];
       pokemonData.forEach((p) => {
-        // Create 2 cards per Pokémon
+        // Create 2 cards per Pokémon with Japanese name
+        const displayName = getDisplayName(p);
         deck.push({
           uniqueId: `${p.id}-a`,
           pokemonId: p.id,
-          name: p.name,
+          name: displayName,
           artwork: p.artwork,
           isFlipped: false,
           isMatched: false,
@@ -81,7 +82,7 @@ export default function MemoryGamePage() {
         deck.push({
           uniqueId: `${p.id}-b`,
           pokemonId: p.id,
-          name: p.name,
+          name: displayName,
           artwork: p.artwork,
           isFlipped: false,
           isMatched: false,

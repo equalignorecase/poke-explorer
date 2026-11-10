@@ -12,12 +12,14 @@ import {
   getRandomPokemonId,
   generateQuizOptions,
 } from "@/lib/games/engine";
-import { capitalize } from "@/lib/utils";
-import { Loader2, ArrowRight, Sparkles } from "lucide-react";
+import { getDisplayName } from "@/lib/utils";
+import { JapaneseName } from "@/lib/pokeapi/types";
+import { Loader2, ArrowRight } from "lucide-react";
 
 interface OptionItem {
   id: number;
   name: string;
+  japaneseName?: JapaneseName;
 }
 
 export default function SilhouetteChallengePage() {
@@ -31,7 +33,7 @@ export default function SilhouetteChallengePage() {
   const [currentPokemon, setCurrentPokemon] = useState<{
     id: number;
     name: string;
-    japaneseName?: { katakana: string; romaji: string };
+    japaneseName?: JapaneseName;
     artwork: string;
   } | null>(null);
   const [options, setOptions] = useState<OptionItem[]>([]);
@@ -66,8 +68,16 @@ export default function SilhouetteChallengePage() {
         ...wrongIds.map((id) => fetch(`/api/pokemon/${id}`).then((r) => r.json())),
       ]);
 
-      const correctOption: OptionItem = { id: correctData.id, name: correctData.name };
-      const wrongOptions: OptionItem[] = wrongData.map((w) => ({ id: w.id, name: w.name }));
+      const correctOption: OptionItem = {
+        id: correctData.id,
+        name: correctData.name,
+        japaneseName: correctData.japaneseName,
+      };
+      const wrongOptions: OptionItem[] = wrongData.map((w) => ({
+        id: w.id,
+        name: w.name,
+        japaneseName: w.japaneseName,
+      }));
 
       const quizChoices = generateQuizOptions(correctOption, wrongOptions, optionsCount);
 
@@ -180,12 +190,8 @@ export default function SilhouetteChallengePage() {
               </div>
             </div>
 
-            {/* Answer Choices */}
-            <div
-              className={`grid gap-3 w-full ${
-                optionsCount === 6 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2"
-              }`}
-            >
+            {/* Answer Choices in Japanese Katakana */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
               {options.map((opt, idx) => {
                 let state: "default" | "correct" | "incorrect" | "selected" = "default";
                 if (isAnswered) {
@@ -199,7 +205,7 @@ export default function SilhouetteChallengePage() {
                 return (
                   <AnswerButton
                     key={opt.id}
-                    label={capitalize(opt.name)}
+                    label={getDisplayName(opt)}
                     shortcutIndex={idx + 1}
                     state={state}
                     disabled={isAnswered}
@@ -211,17 +217,10 @@ export default function SilhouetteChallengePage() {
 
             {/* Post-answer feedback */}
             {isAnswered && (
-              <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
-                <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                  <span className="text-xs font-bold text-slate-800">
-                    {t.games.silhouette.revealText} {capitalize(currentPokemon.name)}!
-                  </span>
-                  {currentPokemon.japaneseName && (
-                    <span className="text-[11px] font-semibold text-slate-500 mt-0.5">
-                      🇯🇵 {currentPokemon.japaneseName.katakana} ({currentPokemon.japaneseName.romaji})
-                    </span>
-                  )}
-                </div>
+              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100">
+                <span className="text-sm font-bold text-slate-800 font-sans">
+                  {t.games.silhouette.revealText} {getDisplayName(currentPokemon)}!
+                </span>
 
                 <button
                   type="button"
@@ -239,4 +238,3 @@ export default function SilhouetteChallengePage() {
     </div>
   );
 }
-

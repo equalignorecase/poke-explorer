@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { PokemonListItem } from "@/lib/pokeapi/types";
-import { formatPokemonId, capitalize } from "@/lib/utils";
+import { formatPokemonId, getDisplayName } from "@/lib/utils";
 import { PokemonArtwork } from "./PokemonArtwork";
 import { PokemonTypeBadge } from "./PokemonTypeBadge";
 import { useFavorites } from "@/context/FavoritesContext";
@@ -55,23 +55,13 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
         />
       </Link>
 
-      {/* Name */}
+      {/* Japanese Name Only */}
       <Link
         href={`/pokemon/${pokemon.id}`}
-        className="font-bold text-slate-800 text-base group-hover:text-red-600 transition-colors text-center"
+        className="font-bold text-slate-800 text-base group-hover:text-red-600 transition-colors text-center font-sans tracking-wide"
       >
-        {capitalize(pokemon.name)}
+        {getDisplayName(pokemon)}
       </Link>
-
-      {/* Japanese Name (Katakana & Romaji) */}
-      {pokemon.japaneseName && (pokemon.japaneseName.katakana || pokemon.japaneseName.romaji) && (
-        <span className="text-[11px] text-slate-400 font-medium tracking-wide mt-0.5 text-center truncate max-w-full">
-          {pokemon.japaneseName.katakana}
-          {pokemon.japaneseName.romaji && (
-            <span className="ml-1 text-[10px] text-slate-400/80">({pokemon.japaneseName.romaji})</span>
-          )}
-        </span>
-      )}
 
       {/* Types */}
       <div className="flex flex-wrap gap-1.5 justify-center mt-2">
@@ -82,4 +72,3 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
     </div>
   );
 }
-

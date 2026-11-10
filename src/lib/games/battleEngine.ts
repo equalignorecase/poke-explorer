@@ -40,10 +40,11 @@ export function createCombatant(pokemon: PokemonDetailData): Combatant {
   const attack = Math.max(pokemon.stats.attack, pokemon.stats.specialAttack);
   const defense = Math.max(pokemon.stats.defense, pokemon.stats.specialDefense);
   const speed = pokemon.stats.speed;
+  const displayName = pokemon.japaneseName?.katakana || pokemon.name;
 
   return {
     id: pokemon.id,
-    name: pokemon.name,
+    name: displayName,
     types: pokemon.types,
     artwork: pokemon.artwork,
     maxHp,

@@ -10,7 +10,7 @@ import {
   getTeamDefensiveWeaknesses,
   getTeamTypeDistribution,
 } from "@/lib/games/typeRelations";
-import { capitalize } from "@/lib/utils";
+import { getDisplayName } from "@/lib/utils";
 import {
   Trash2,
   Plus,
@@ -126,9 +126,9 @@ export default function TeamPage() {
               {/* Name & types */}
               <Link
                 href={`/pokemon/${pokemon.id}`}
-                className="font-bold text-slate-800 text-xs text-center hover:text-red-600 truncate w-full"
+                className="font-bold text-slate-800 text-xs text-center hover:text-red-600 truncate w-full font-sans tracking-wide"
               >
-                {capitalize(pokemon.name)}
+                {getDisplayName(pokemon)}
               </Link>
               <div className="flex gap-1 mt-1.5">
                 {pokemon.types.map((type) => (

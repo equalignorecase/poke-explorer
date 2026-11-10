@@ -7,7 +7,7 @@ import { PokemonArtwork } from "@/components/pokemon/PokemonArtwork";
 import { PokemonTypeBadge } from "@/components/pokemon/PokemonTypeBadge";
 import { PokemonListItem, PokemonTypeName } from "@/lib/pokeapi/types";
 import { POKEMON_TYPES } from "@/lib/games/typeRelations";
-import { capitalize, formatPokemonId } from "@/lib/utils";
+import { capitalize, formatPokemonId, getDisplayName } from "@/lib/utils";
 import {
   Sparkles,
   Gamepad2,
@@ -28,6 +28,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 1,
     name: "bulbasaur",
+    japaneseName: { katakana: "フシギダネ", romaji: "Fushigidane" },
     types: ["grass", "poison"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
@@ -36,6 +37,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 4,
     name: "charmander",
+    japaneseName: { katakana: "ヒトカゲ", romaji: "Hitokage" },
     types: ["fire"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
@@ -44,6 +46,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 7,
     name: "squirtle",
+    japaneseName: { katakana: "ゼニガメ", romaji: "Zenigame" },
     types: ["water"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
@@ -52,6 +55,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 25,
     name: "pikachu",
+    japaneseName: { katakana: "ピカチュウ", romaji: "Pikachu" },
     types: ["electric"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
@@ -60,6 +64,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 133,
     name: "eevee",
+    japaneseName: { katakana: "イーブイ", romaji: "Eievui" },
     types: ["normal"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
@@ -68,6 +73,7 @@ const FEATURED_POKEMON: PokemonListItem[] = [
   {
     id: 151,
     name: "mew",
+    japaneseName: { katakana: "ミュウ", romaji: "Mew" },
     types: ["psychic"],
     generation: 1,
     sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
@@ -242,8 +248,8 @@ export default function HomePage() {
                 artwork={pokemon.artwork}
                 size={110}
               />
-              <span className="font-bold text-slate-800 text-sm group-hover:text-red-600 mt-2">
-                {capitalize(pokemon.name)}
+              <span className="font-bold text-slate-800 text-sm group-hover:text-red-600 mt-2 font-sans tracking-wide">
+                {getDisplayName(pokemon)}
               </span>
               <div className="flex gap-1 mt-1.5">
                 {pokemon.types.map((type) => (
@@ -338,8 +344,8 @@ export default function HomePage() {
                 <span className="text-xs font-mono text-slate-400">
                   {formatPokemonId(randomPokemon.id)}
                 </span>
-                <h3 className="text-3xl font-black tracking-tight mt-0.5">
-                  {capitalize(randomPokemon.name)}
+                <h3 className="text-3xl font-black tracking-tight mt-0.5 font-sans">
+                  {getDisplayName(randomPokemon)}
                 </h3>
                 <p className="text-sm text-slate-300 mt-2 line-clamp-2 italic">
                   &ldquo;{randomPokemon.flavorText.en}&rdquo;

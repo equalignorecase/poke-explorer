@@ -8,7 +8,7 @@ import { GameResult } from "@/components/games/GameResult";
 import { PokemonArtwork } from "@/components/pokemon/PokemonArtwork";
 import { PokemonDetailData } from "@/lib/pokeapi/types";
 import { getRandomPokemonId } from "@/lib/games/engine";
-import { capitalize, formatPokemonId } from "@/lib/utils";
+import { capitalize, formatPokemonId, getDisplayName } from "@/lib/utils";
 import {
   TrendingUp,
   TrendingDown,
@@ -190,8 +190,8 @@ export default function HigherLowerPage() {
               <span className="font-mono text-xs text-slate-400">
                 {formatPokemonId(pokemonA.id)}
               </span>
-              <h3 className="font-bold text-slate-900 text-lg">
-                {capitalize(pokemonA.name)}
+              <h3 className="font-bold text-slate-900 text-lg font-sans">
+                {getDisplayName(pokemonA)}
               </h3>
               <div className="my-3">
                 <PokemonArtwork
@@ -216,8 +216,8 @@ export default function HigherLowerPage() {
               <span className="font-mono text-xs text-slate-400">
                 {formatPokemonId(pokemonB.id)}
               </span>
-              <h3 className="font-bold text-slate-900 text-lg">
-                {capitalize(pokemonB.name)}
+              <h3 className="font-bold text-slate-900 text-lg font-sans">
+                {getDisplayName(pokemonB)}
               </h3>
               <div className="my-3">
                 <PokemonArtwork

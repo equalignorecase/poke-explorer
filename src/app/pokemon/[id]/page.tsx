@@ -10,7 +10,7 @@ import { PokemonDetailData, PokemonListItem, PokemonTypeName } from "@/lib/pokea
 import { PokemonArtwork } from "@/components/pokemon/PokemonArtwork";
 import { PokemonTypeBadge } from "@/components/pokemon/PokemonTypeBadge";
 import { PokemonStatBar } from "@/components/pokemon/PokemonStatBar";
-import { capitalize, formatPokemonId } from "@/lib/utils";
+import { formatPokemonId, getDisplayName } from "@/lib/utils";
 import {
   Heart,
   Users,
@@ -245,21 +245,9 @@ export default function PokemonDetailPage() {
                 <span className="font-mono text-xs font-bold text-slate-400">
                   {formatPokemonId(pokemon.id)}
                 </span>
-                <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-                  {capitalize(pokemon.name)}
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight font-sans">
+                  {getDisplayName(pokemon)}
                 </h1>
-                {pokemon.japaneseName && (pokemon.japaneseName.katakana || pokemon.japaneseName.romaji) && (
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-sm font-bold text-slate-600">
-                      {pokemon.japaneseName.katakana}
-                    </span>
-                    {pokemon.japaneseName.romaji && (
-                      <span className="text-xs font-mono text-slate-400">
-                        ({pokemon.japaneseName.romaji})
-                      </span>
-                    )}
-                  </div>
-                )}
               </div>
 
               <div className="flex gap-2">
