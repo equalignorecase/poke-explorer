@@ -1,36 +1,169 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokédex Explorer
 
-## Getting Started
+An unofficial, modern, production-grade web application combining an encyclopedic Pokédex with seven interactive Pokémon mini-games. Powered by the public [PokéAPI v2](https://pokeapi.co/), built with Next.js App Router, React 19, TypeScript (strict mode), and Tailwind CSS.
 
-First, run the development server:
+---
+
+## ⚡ Highlights
+
+- **Complete Pokédex Explorer:** Real-time search by name or Pokédex number, filtering by Pokémon type (all 18 types) and generation (Generations I–IX) using exact API intersection logic.
+- **Detailed Pokémon Profiles:** Official artwork, shiny variant toggle, base stats with proportional visual gauges, physical dimensions, abilities, flavor text, and audio cries.
+- **Side-by-Side Comparison:** Compare any two Pokémon across all base stats with real-time stat advantage highlighting.
+- **Temporary Favorites & Team Builder:** Bookmark favorites and assemble a 6-member squad with automated combined type defense & vulnerability analysis.
+- **7 Fully Playable Mini-Games:**
+  1. **Who's That Pokémon?** — Fast-paced 10-round multiple-choice visual quiz.
+  2. **Silhouette Challenge** — Pure silhouette shape recognition without revealing spoilers.
+  3. **Higher or Lower** — Guess whether the next Pokémon's base stat is higher or lower with strictly enforced tie-breakers.
+  4. **Pokémon Cry Quiz** — Listen to official sound cries and identify the Pokémon.
+  5. **Type Match** — Test your mastery of single and dual-type elemental multipliers.
+  6. **Memory Card Game** — Interactive card flipping with move counts and timer.
+  7. **Battle Simulator** — Turn-based tactical combat simulator featuring Quick Attack, Power Attack, and Defend mechanics against an AI opponent.
+- **Internationalization (i18n):** Instant runtime bilingual interface switching between **English (en)** and **Thai (th)** with no page reload required.
+- **Strict Ephemeral Privacy:** 100% session-based state; zero cookies, localStorage, IndexedDB, or tracking databases used.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js (App Router, Turbopack)
+- **Library:** React 19
+- **Language:** TypeScript (Strict mode)
+- **Styling:** Tailwind CSS (Modern Minimal design tokens)
+- **Icons:** Lucide React
+- **Data & Caching:** PokéAPI v2 via native Fetch and TanStack Query
+- **Testing:** Vitest, React Testing Library, Playwright
+- **Animations:** Motion, Canvas-confetti
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/
+│   ├── layout.tsx              # Root layout with providers, fonts, Navbar & Footer
+│   ├── page.tsx                # Homepage (Hero, Featured, Explore by Type, Games, Spotlight)
+│   ├── pokedex/page.tsx        # Pokédex Explorer with search, filters & pagination
+│   ├── pokemon/[id]/page.tsx   # Detailed Pokémon profile, shiny toggle, cry player
+│   ├── compare/page.tsx        # Side-by-side stat comparison engine
+│   ├── favorites/page.tsx      # Temporary session favorites
+│   ├── team/page.tsx           # 6-member team builder & weakness analysis
+│   ├── games/
+│   │   ├── page.tsx            # Mini-games hub
+│   │   ├── guess/page.tsx      # Game 1: Who's That Pokémon?
+│   │   ├── silhouette/page.tsx # Game 2: Silhouette Challenge
+│   │   ├── higher-lower/page.tsx# Game 3: Higher or Lower
+│   │   ├── cry/page.tsx        # Game 4: Pokémon Cry Quiz
+│   │   ├── type-match/page.tsx # Game 5: Type Match
+│   │   ├── memory/page.tsx     # Game 6: Memory Card Game
+│   │   └── battle/page.tsx     # Game 7: Battle Simulator
+│   ├── about/page.tsx          # Project details, credits, legal disclaimer
+│   ├── api/
+│   │   └── pokemon/            # Route handlers with caching headers
+│   ├── globals.css             # Theme variables & modern minimal tokens
+│   ├── loading.tsx             # Global loading state
+│   ├── error.tsx               # Global error boundary
+│   └── not-found.tsx           # 404 handler
+├── components/
+│   ├── layout/                 # Navbar, Footer, LanguageSwitcher
+│   ├── pokemon/                # PokemonCard, PokemonArtwork, TypeBadge, StatBar, Search, Filters
+│   └── games/                  # GameHeader, GameScore, GameResult, AnswerButton
+├── context/
+│   ├── LanguageContext.tsx     # Temporary bilingual i18n context
+│   ├── FavoritesContext.tsx    # Temporary favorites session state
+│   └── TeamContext.tsx         # 6-slot squad builder session state
+├── i18n/                       # Typed dictionaries (en.ts, th.ts, types.ts)
+├── lib/
+│   ├── pokeapi/                # Centralized PokéAPI client & helpers
+│   ├── games/                  # Battle engine, type chart, quiz generation utilities
+│   └── utils.ts                # Formatting and styling helpers
+└── tests/
+    ├── unit/                   # Vitest unit tests (engine, battle, types)
+    ├── integration/            # React Testing Library integration tests
+    └── e2e/                    # Playwright end-to-end user journeys
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.18+ or 20+ (tested on Node v26)
+- npm 9+
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/pokedex-explorer.git
+cd pokedex-explorer
+
+# Install dependencies
+npm install
+```
+
+### Development Server
+
+Run the development server locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Testing & Verification
 
-## Learn More
+Run the automated test suites:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Run unit & integration tests with Vitest
+npm test
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Type checking
+npm run typecheck
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Code quality & ESLint checks
+npm run lint
 
-## Deploy on Vercel
+# Production build test
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ☁️ Deployment (Vercel)
+
+1. Push your repository to GitHub.
+2. Sign in to [Vercel](https://vercel.com/) and click **Add New Project**.
+3. Import your GitHub repository (`pokedex-explorer`).
+4. Keep the default build settings:
+   - Framework Preset: **Next.js**
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+5. Click **Deploy**. No environment variables or external API keys are required.
+
+---
+
+## ⚠️ Known Limitations
+
+- **Temporary Session Storage:** By design, all bookmarked favorites, teams, and game high scores reside in runtime React Context and reset upon browser page reload.
+- **Simplified Battle Simulator:** The battle simulator is an educational game using derived base stats, action priority, and elemental multiplier interactions. It does not reproduce official competitive tournament rules (EVs/IVs, items, abilities, weather, or entry hazards).
+- **PokéAPI Public Service:** Image artwork and sound cries rely on PokéAPI's public endpoints; offline use requires previously cached network assets.
+
+---
+
+## 📜 Disclaimer & Credits
+
+**Pokédex Explorer** is an unofficial fan-made educational project. It is **not** affiliated with, endorsed by, or sponsored by Nintendo, Game Freak, Creatures Inc., or The Pokémon Company.
+
+Pokémon and all related names and imagery are registered trademarks of their respective owners. Data and assets provided courtesy of [PokéAPI v2](https://pokeapi.co/).
+
+---
+
+## 📄 License
+
+This software is licensed under the [MIT License](LICENSE).
