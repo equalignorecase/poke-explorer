@@ -1,5 +1,51 @@
 # Pokédex Explorer
 
+เว็บแอปพลิเคชันสารานุกรมโปเกมอน (Pokédex) และ 7 มินิเกมสุดคลาสสิก พัฒนาด้วย Next.js App Router, React 19, TypeScript (Strict Mode) และ Tailwind CSS ขับเคลื่อนด้วยข้อมูลสดจาก [PokéAPI v2](https://pokeapi.co/)
+
+[🇹🇭 สรุปภาพรวมภาษาไทย](#-สรุปภาพรวมภาษาไทย) | [English Documentation](#-english-documentation)
+
+---
+
+## 🇹🇭 สรุปภาพรวมภาษาไทย
+
+### ⚡ ฟีเจอร์หลัก
+* **Pokédex Explorer**: ค้นหาตามชื่อ/รหัสโปเกมอน ฟิลเตอร์ตามธาตุ (18 ธาตุ) และรุ่น (Gen 1–9) แบบ real-time
+* **หน้ารายละเอียดโปเกมอน**: แสดงรูปอาร์ตเวิร์กทางการ, สลับดูร่าง Shiny, กราฟ Stat แสดงค่าพลัง, ความสามารถ, ส่วนสูง/น้ำหนัก และเปิดฟังเสียงร้อง (Cry)
+* **ระบบเปรียบเทียบ (Compare)**: นำโปเกมอน 2 ตัวมาวางเทียบค่าพลังตัวต่อตัว ไฮไลท์จุดเด่นชัดเจน
+* **ระบบ Favorites & จัดทีม (Team Builder)**: กดบุ๊กมาร์กตัวที่ชอบ และจัดทีมได้สูงสุด 6 ตัว พร้อมระบบวิเคราะห์จุดอ่อน/จุดต้านทานธาตุรวมอัตโนมัติ
+* **ชื่อภาษาอังกฤษเวอร์ชันญี่ปุ่น**: แสดงชื่อ Romaji ญี่ปุ่นเป็นชื่อหลักทั่วทั้งแอป (*Lizardon*, *Kamex*, *Fushigidane*, *Hitokage*, *Purin*)
+* **Dark Mode & รองรับ 2 ภาษา**: มีปุ่มสลับธีม Dark Mode และสลับภาษาไทย (TH) / อังกฤษ (EN) ได้ทันที
+* **ความปลอดภัย & Ephemeral Privacy**: เก็บสถานะชั่วคราวใน Memory เท่านั้น ไม่บันทึกข้อมูลลง `localStorage`, Cookie หรือ Database ใดๆ
+
+### 🎮 7 มินิเกม
+1. **Who's That Pokémon?**: ทายชื่อโปเกมอนจากรูปภาพ 10 ข้อ ชอยส์ 4 ตัวเลือก
+2. **Silhouette Challenge**: ทายชื่อโปเกมอนจากภาพเงามืด
+3. **Higher or Lower**: ทายค่าสเตตัสตัวถัดไปว่าสูงกว่าหรือต่ำกว่า
+4. **Pokémon Cry Quiz**: ฟังไฟล์เสียงร้องแล้วทายตัวโปเกมอน
+5. **Type Match**: ตอบคำถามเรื่องชนะทาง/แพ้ทางตามตารางธาตุ
+6. **Memory Card Game**: เกมเปิดการ์ดจับคู่ นับเวลาและจำนวนครั้งที่เปิด
+7. **Battle Simulator**: จำลองการต่อสู้แบบ Turn-based สู้กับบอท AI (Quick Attack / Power Attack / Defend)
+
+### 🛠️ Tech Stack
+* **Framework & Core**: Next.js 16 (App Router, Turbopack), React 19, TypeScript (Strict Mode)
+* **Styling**: Tailwind CSS v4, Lucide React
+* **Data Fetching**: PokéAPI v2, TanStack Query
+* **Testing**: Vitest, React Testing Library, Playwright E2E
+
+### 🚀 วิธีติดตั้งและรันโปรเจกต์
+```bash
+git clone https://github.com/equalignorecase/poke-explorer.git
+cd poke-explorer
+npm install
+npm run dev        # เปิดใช้งานที่ http://localhost:3000
+npm test           # รัน unit/integration tests
+npm run build      # บิลด์ production
+```
+
+---
+
+## 🌐 English Documentation
+
 An unofficial, modern, production-grade web application combining an encyclopedic Pokédex with seven interactive Pokémon mini-games. Powered by the public [PokéAPI v2](https://pokeapi.co/), built with Next.js App Router, React 19, TypeScript (strict mode), and Tailwind CSS.
 
 ---
