@@ -39,6 +39,7 @@ export default function CryQuizPage() {
   const [currentPokemon, setCurrentPokemon] = useState<{
     id: number;
     name: string;
+    japaneseName?: { katakana: string; romaji: string };
     artwork: string;
     cryUrl: string;
   } | null>(null);
@@ -114,6 +115,7 @@ export default function CryQuizPage() {
         setCurrentPokemon({
           id: correctData.id,
           name: correctData.name,
+          japaneseName: correctData.japaneseName,
           artwork: correctData.artwork,
           cryUrl,
         });
@@ -271,12 +273,19 @@ export default function CryQuizPage() {
 
             {/* Post-answer feedback */}
             {isAnswered && (
-              <div className="w-full flex items-center justify-between pt-2 border-t border-slate-100">
-                <span className="text-xs font-bold text-slate-600">
-                  {selectedAnswer === currentPokemon.id
-                    ? `${t.games.guess.correct} ${capitalize(currentPokemon.name)}!`
-                    : `${t.games.guess.wrong} ${capitalize(currentPokemon.name)}.`}
-                </span>
+              <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
+                <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                  <span className="text-xs font-bold text-slate-800">
+                    {selectedAnswer === currentPokemon.id
+                      ? `${t.games.guess.correct} ${capitalize(currentPokemon.name)}!`
+                      : `${t.games.guess.wrong} ${capitalize(currentPokemon.name)}.`}
+                  </span>
+                  {currentPokemon.japaneseName && (
+                    <span className="text-[11px] font-semibold text-slate-500 mt-0.5">
+                      🇯🇵 {currentPokemon.japaneseName.katakana} ({currentPokemon.japaneseName.romaji})
+                    </span>
+                  )}
+                </div>
 
                 <button
                   type="button"

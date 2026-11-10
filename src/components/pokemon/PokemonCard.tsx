@@ -63,6 +63,16 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
         {capitalize(pokemon.name)}
       </Link>
 
+      {/* Japanese Name (Katakana & Romaji) */}
+      {pokemon.japaneseName && (pokemon.japaneseName.katakana || pokemon.japaneseName.romaji) && (
+        <span className="text-[11px] text-slate-400 font-medium tracking-wide mt-0.5 text-center truncate max-w-full">
+          {pokemon.japaneseName.katakana}
+          {pokemon.japaneseName.romaji && (
+            <span className="ml-1 text-[10px] text-slate-400/80">({pokemon.japaneseName.romaji})</span>
+          )}
+        </span>
+      )}
+
       {/* Types */}
       <div className="flex flex-wrap gap-1.5 justify-center mt-2">
         {pokemon.types.map((type) => (

@@ -100,6 +100,7 @@ export default function PokemonDetailPage() {
       const listItem: PokemonListItem = {
         id: pokemon.id,
         name: pokemon.name,
+        japaneseName: pokemon.japaneseName,
         types: pokemon.types,
         generation: pokemon.generation,
         sprite: pokemon.sprite,
@@ -144,6 +145,7 @@ export default function PokemonDetailPage() {
   const listItem: PokemonListItem = {
     id: pokemon.id,
     name: pokemon.name,
+    japaneseName: pokemon.japaneseName,
     types: pokemon.types,
     generation: pokemon.generation,
     sprite: pokemon.sprite,
@@ -246,6 +248,18 @@ export default function PokemonDetailPage() {
                 <h1 className="text-3xl font-black text-slate-900 tracking-tight">
                   {capitalize(pokemon.name)}
                 </h1>
+                {pokemon.japaneseName && (pokemon.japaneseName.katakana || pokemon.japaneseName.romaji) && (
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-sm font-bold text-slate-600">
+                      {pokemon.japaneseName.katakana}
+                    </span>
+                    {pokemon.japaneseName.romaji && (
+                      <span className="text-xs font-mono text-slate-400">
+                        ({pokemon.japaneseName.romaji})
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-2">

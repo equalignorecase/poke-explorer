@@ -113,7 +113,7 @@ export async function getPokemon(idOrName: string | number): Promise<PokemonDeta
     }
   }
 
-  // Generation detection
+  // Extract Generation
   let generation = getGenerationFromId(id);
   if (species?.generation?.url) {
     const genSegments = species.generation.url.split("/").filter(Boolean);
@@ -123,9 +123,27 @@ export async function getPokemon(idOrName: string | number): Promise<PokemonDeta
     }
   }
 
+  // Extract Japanese Name (Katakana & Romaji)
+  let japaneseName: { katakana: string; romaji: string } | undefined = undefined;
+  if (species?.names) {
+    const jaEntry = species.names.find(
+      (n: any) => n.language.name === "ja" || n.language.name === "ja-hrkt"
+    );
+    const romaEntry = species.names.find(
+      (n: any) => n.language.name === "ja-roma" || n.language.name === "roomaji"
+    );
+    if (jaEntry || romaEntry) {
+      japaneseName = {
+        katakana: jaEntry?.name || "",
+        romaji: romaEntry?.name || "",
+      };
+    }
+  }
+
   return {
     id,
     name: pokemon.name,
+    japaneseName,
     types,
     generation,
     artwork,
@@ -173,6 +191,7 @@ export async function getPokemonByIds(ids: number[]): Promise<PokemonListItem[]>
         return {
           id: p.id,
           name: p.name,
+          japaneseName: p.japaneseName,
           types: p.types,
           generation: p.generation,
           sprite: p.sprite,

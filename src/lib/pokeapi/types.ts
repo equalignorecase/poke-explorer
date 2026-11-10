@@ -18,10 +18,16 @@ export type PokemonTypeName =
   | "fairy"
   | "dark";
 
+export interface JapaneseName {
+  katakana: string;
+  romaji: string;
+}
+
 export interface PokemonListItem {
   id: number;
   name: string;
   thaiName?: string;
+  japaneseName?: JapaneseName;
   types: PokemonTypeName[];
   generation: number;
   sprite: string;
@@ -42,14 +48,15 @@ export interface PokemonDetailData {
   id: number;
   name: string;
   thaiName?: string;
+  japaneseName?: JapaneseName;
   types: PokemonTypeName[];
   generation: number;
   artwork: string;
   sprite: string;
   shinyArtwork: string;
   shinySprite: string;
-  height: number; // in meters
-  weight: number; // in kg
+  height: number;
+  weight: number;
   abilities: { name: string; is_hidden: boolean }[];
   stats: PokemonStats;
   cries: {
@@ -61,4 +68,3 @@ export interface PokemonDetailData {
     th?: string;
   };
 }
-
