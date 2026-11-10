@@ -39,7 +39,7 @@ export function PokemonArtwork({
   if (hasError) {
     return (
       <div
-        className={`flex flex-col items-center justify-center bg-slate-100 rounded-2xl text-slate-400 p-4 ${className}`}
+        className={`flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-2xl text-slate-400 dark:text-slate-500 p-4 ${className}`}
         style={{ width: size, height: size }}
       >
         <Sparkles className="w-8 h-8 mb-1 opacity-50" />

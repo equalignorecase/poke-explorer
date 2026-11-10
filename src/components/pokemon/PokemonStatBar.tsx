@@ -30,13 +30,13 @@ export function PokemonStatBar({
 
   return (
     <div className="flex items-center gap-3 text-xs">
-      <span className="w-20 text-slate-500 font-medium shrink-0 truncate">
+      <span className="w-20 text-slate-500 dark:text-slate-400 font-medium shrink-0 truncate">
         {label}
       </span>
       <span className={`w-10 text-right font-mono font-bold shrink-0 ${highlightClass}`}>
         {value}
       </span>
-      <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+      <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-500 ${barColor}`}
           style={{ width: `${percentage}%` }}

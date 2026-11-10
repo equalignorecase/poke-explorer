@@ -18,14 +18,17 @@ export function AnswerButton({
   state = "default",
   shortcutIndex,
 }: AnswerButtonProps) {
-  let stateClasses = "bg-white hover:bg-slate-50 border-slate-200 text-slate-800 hover:border-slate-300";
+  let stateClasses =
+    "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 hover:border-slate-300 dark:hover:border-slate-700";
 
   if (state === "correct") {
-    stateClasses = "bg-emerald-50 border-emerald-500 text-emerald-800 font-bold ring-2 ring-emerald-200";
+    stateClasses =
+      "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 text-emerald-800 dark:text-emerald-200 font-bold ring-2 ring-emerald-200 dark:ring-emerald-900";
   } else if (state === "incorrect") {
-    stateClasses = "bg-rose-50 border-rose-500 text-rose-800 font-bold line-through ring-2 ring-rose-200";
+    stateClasses =
+      "bg-rose-50 dark:bg-rose-950/60 border-rose-500 text-rose-800 dark:text-rose-200 font-bold line-through ring-2 ring-rose-200 dark:ring-rose-900";
   } else if (state === "selected") {
-    stateClasses = "bg-slate-100 border-slate-400 text-slate-900";
+    stateClasses = "bg-slate-100 dark:bg-slate-800 border-slate-400 dark:border-slate-600 text-slate-900 dark:text-white";
   }
 
   return (
@@ -37,7 +40,7 @@ export function AnswerButton({
     >
       <div className="flex items-center gap-3">
         {shortcutIndex !== undefined && (
-          <span className="w-5 h-5 rounded-md bg-slate-100 text-slate-500 text-[11px] font-mono flex items-center justify-center font-bold">
+          <span className="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[11px] font-mono flex items-center justify-center font-bold">
             {shortcutIndex}
           </span>
         )}

@@ -167,30 +167,30 @@ export default function HigherLowerPage() {
       />
 
       {/* Main Comparison Stage */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
         {/* Comparison prompt */}
         <div className="text-center">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
             Comparing Stat
           </span>
-          <h2 className="text-xl font-black text-slate-900 mt-0.5">
+          <h2 className="text-xl font-black text-slate-900 dark:text-slate-100 mt-0.5">
             {activeStat.label}
           </h2>
         </div>
 
         {isLoading || !pokemonA || !pokemonB ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <div className="flex flex-col items-center justify-center py-20 text-slate-400 dark:text-slate-500 space-y-3">
             <Loader2 className="w-8 h-8 animate-spin text-red-600" />
             <span className="text-xs font-semibold">{t.common.loading}</span>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             {/* Pokémon A (Known) */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col items-center text-center">
-              <span className="font-mono text-xs text-slate-400">
+            <div className="bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 flex flex-col items-center text-center">
+              <span className="font-mono text-xs text-slate-400 dark:text-slate-500">
                 {formatPokemonId(pokemonA.id)}
               </span>
-              <h3 className="font-bold text-slate-900 text-lg font-sans">
+              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-lg font-sans">
                 {getDisplayName(pokemonA)}
               </h3>
               <div className="my-3">
@@ -201,22 +201,22 @@ export default function HigherLowerPage() {
                   size={150}
                 />
               </div>
-              <div className="w-full bg-white border border-slate-200 rounded-xl p-3 shadow-xs">
-                <span className="text-xs font-bold text-slate-400 uppercase">
+              <div className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-3 shadow-xs">
+                <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">
                   {activeStat.label}
                 </span>
-                <p className="font-mono font-black text-2xl text-slate-900 mt-0.5">
+                <p className="font-mono font-black text-2xl text-slate-900 dark:text-slate-100 mt-0.5">
                   {pokemonA.stats[activeStat.key]}
                 </p>
               </div>
             </div>
 
             {/* Pokémon B (Hidden until guessed) */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col items-center text-center">
-              <span className="font-mono text-xs text-slate-400">
+            <div className="bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 flex flex-col items-center text-center">
+              <span className="font-mono text-xs text-slate-400 dark:text-slate-500">
                 {formatPokemonId(pokemonB.id)}
               </span>
-              <h3 className="font-bold text-slate-900 text-lg font-sans">
+              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-lg font-sans">
                 {getDisplayName(pokemonB)}
               </h3>
               <div className="my-3">
@@ -234,8 +234,8 @@ export default function HigherLowerPage() {
                   <div
                     className={`w-full rounded-xl p-3 border shadow-xs transition-all ${
                       isCorrect
-                        ? "bg-emerald-50 border-emerald-300 text-emerald-800"
-                        : "bg-rose-50 border-rose-300 text-rose-800"
+                        ? "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300"
+                        : "bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300"
                     }`}
                   >
                     <span className="text-xs font-bold uppercase">
@@ -272,15 +272,15 @@ export default function HigherLowerPage() {
 
         {/* Post-answer feedback & Next round */}
         {isAnswered && (
-          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2">
               {isCorrect ? (
-                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                   <Check className="w-4 h-4" />
                   <span>{t.games.higherLower.correct}</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-1.5 text-xs font-bold text-rose-700 bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/40 px-3 py-1.5 rounded-full border border-rose-200 dark:border-rose-800">
                   <X className="w-4 h-4" />
                   <span>{t.games.higherLower.wrong}</span>
                 </div>

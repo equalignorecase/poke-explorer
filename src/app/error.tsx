@@ -15,12 +15,12 @@ export default function ErrorBoundary({
   }, [error]);
 
   return (
-    <div className="bg-white border border-slate-200 rounded-3xl p-12 text-center max-w-md mx-auto my-16 space-y-4 shadow-xs">
-      <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-12 text-center max-w-md mx-auto my-16 space-y-4 shadow-xs">
+      <div className="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
         <AlertTriangle className="w-6 h-6" />
       </div>
-      <h2 className="text-xl font-bold text-slate-800">Something went wrong</h2>
-      <p className="text-xs text-slate-500 leading-relaxed">
+      <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Something went wrong</h2>
+      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
         An unexpected error occurred while loading this page. Please try again.
       </p>
       <button

@@ -20,20 +20,20 @@ export function GameScore({
   const { t } = useLanguage();
 
   return (
-    <div className="flex items-center justify-between bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
+    <div className="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xs">
       {/* Round */}
       <div className="flex items-center gap-2">
-        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
           {t.common.round}
         </span>
-        <span className="font-mono font-black text-slate-800 text-sm">
+        <span className="font-mono font-black text-slate-800 dark:text-slate-100 text-sm">
           {round} / {totalRounds}
         </span>
       </div>
 
       {/* Streak (if active) */}
       {streak > 1 && (
-        <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-bold border border-amber-200 animate-bounce">
+        <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 rounded-full text-xs font-bold border border-amber-200 dark:border-amber-800 animate-bounce">
           <Flame className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
           <span>
             {streak} {t.common.streak}
@@ -43,11 +43,11 @@ export function GameScore({
 
       {/* Score */}
       <div className="flex items-center gap-2">
-        <Trophy className="w-4 h-4 text-red-600" />
-        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <Trophy className="w-4 h-4 text-red-600 dark:text-red-400" />
+        <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
           {t.common.score}
         </span>
-        <span className="font-mono font-black text-red-600 text-base">
+        <span className="font-mono font-black text-red-600 dark:text-red-400 text-base">
           {score}
         </span>
       </div>

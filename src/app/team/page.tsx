@@ -34,10 +34,10 @@ export default function TeamPage() {
       {/* Header & Clear Button */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
             {t.team.title}
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             {t.team.subtitle}
           </p>
         </div>
@@ -46,7 +46,7 @@ export default function TeamPage() {
           <button
             type="button"
             onClick={clearTeam}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 text-xs font-bold rounded-xl transition-colors cursor-pointer self-start sm:self-auto"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/40 hover:text-rose-600 dark:hover:text-rose-400 text-slate-600 dark:text-slate-300 text-xs font-bold rounded-xl transition-colors cursor-pointer self-start sm:self-auto"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>{t.team.clearTeam}</span>
@@ -55,19 +55,19 @@ export default function TeamPage() {
       </div>
 
       {/* Session notice banner */}
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3 text-xs text-amber-800">
-        <Info className="w-4 h-4 text-amber-600 shrink-0" />
+      <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-2xl p-4 flex items-center gap-3 text-xs text-amber-800 dark:text-amber-300">
+        <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
         <span>{t.team.sessionNotice}</span>
       </div>
 
       {/* 6 Team Slots */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
           <span>
             {t.team.slotsUsed}: {team.length} / 6
           </span>
           {team.length === 6 && (
-            <span className="text-red-600 font-bold">Team is Full</span>
+            <span className="text-red-600 dark:text-red-400 font-bold">Team is Full</span>
           )}
         </div>
 
@@ -76,17 +76,17 @@ export default function TeamPage() {
           {team.map((pokemon, index) => (
             <div
               key={pokemon.id}
-              className="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-between shadow-xs relative group"
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col items-center justify-between shadow-xs relative group"
             >
               {/* Member order & controls */}
-              <div className="w-full flex items-center justify-between text-xs font-mono text-slate-400">
+              <div className="w-full flex items-center justify-between text-xs font-mono text-slate-400 dark:text-slate-500">
                 <span>#{index + 1}</span>
                 <div className="flex items-center gap-0.5">
                   {index > 0 && (
                     <button
                       type="button"
                       onClick={() => reorderTeam(index, index - 1)}
-                      className="p-1 hover:text-slate-800 cursor-pointer"
+                      className="p-1 hover:text-slate-800 dark:hover:text-slate-200 cursor-pointer"
                       title="Move left"
                     >
                       <ArrowUp className="w-3 h-3 rotate-270 sm:rotate-0" />
@@ -96,7 +96,7 @@ export default function TeamPage() {
                     <button
                       type="button"
                       onClick={() => reorderTeam(index, index + 1)}
-                      className="p-1 hover:text-slate-800 cursor-pointer"
+                      className="p-1 hover:text-slate-800 dark:hover:text-slate-200 cursor-pointer"
                       title="Move right"
                     >
                       <ArrowDown className="w-3 h-3 rotate-270 sm:rotate-0" />
@@ -105,7 +105,7 @@ export default function TeamPage() {
                   <button
                     type="button"
                     onClick={() => removeFromTeam(pokemon.id)}
-                    className="p-1 text-slate-300 hover:text-rose-600 cursor-pointer"
+                    className="p-1 text-slate-300 dark:text-slate-600 hover:text-rose-600 dark:hover:text-rose-400 cursor-pointer"
                     title="Remove from team"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export default function TeamPage() {
               {/* Name & types */}
               <Link
                 href={`/pokemon/${pokemon.id}`}
-                className="font-bold text-slate-800 text-xs text-center hover:text-red-600 truncate w-full font-sans tracking-wide"
+                className="font-bold text-slate-800 dark:text-slate-200 text-xs text-center hover:text-red-600 dark:hover:text-red-400 truncate w-full font-sans tracking-wide"
               >
                 {getDisplayName(pokemon)}
               </Link>
@@ -143,10 +143,10 @@ export default function TeamPage() {
             <Link
               key={i}
               href="/pokedex"
-              className="bg-slate-50 border-2 border-dashed border-slate-200 hover:border-red-300 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-400 hover:text-red-500 transition-colors min-h-[180px] group"
+              className="bg-slate-50 dark:bg-slate-900/60 border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-red-300 dark:hover:border-red-500 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 transition-colors min-h-[180px] group"
             >
-              <div className="w-10 h-10 rounded-full bg-slate-100 group-hover:bg-red-50 flex items-center justify-center mb-2 transition-colors">
-                <Plus className="w-5 h-5 text-slate-400 group-hover:text-red-600" />
+              <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-red-50 dark:group-hover:bg-red-950/40 flex items-center justify-center mb-2 transition-colors">
+                <Plus className="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-red-600 dark:group-hover:text-red-400" />
               </div>
               <span className="text-xs font-bold">{t.team.emptySlot}</span>
             </Link>
@@ -158,21 +158,21 @@ export default function TeamPage() {
       {team.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
           {/* Defensive Weaknesses */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="font-bold text-slate-900 text-base">
+              <h2 className="font-bold text-slate-900 dark:text-slate-100 text-base">
                 {t.team.defensiveWeaknesses}
               </h2>
-              <span className="text-[11px] font-bold text-slate-400 uppercase">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase">
                 Weak Count
               </span>
             </div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Types that deal super-effective damage to members of your current squad:
             </p>
 
             {weaknesses.length === 0 ? (
-              <p className="text-xs text-emerald-600 font-medium">
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
                 No common defensive vulnerabilities found!
               </p>
             ) : (
@@ -180,10 +180,10 @@ export default function TeamPage() {
                 {weaknesses.map((w) => (
                   <div
                     key={w.type}
-                    className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100"
+                    className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800"
                   >
                     <PokemonTypeBadge type={w.type} size="sm" />
-                    <span className="text-xs font-mono font-bold text-rose-600">
+                    <span className="text-xs font-mono font-bold text-rose-600 dark:text-rose-400">
                       {w.weakCount} weak
                     </span>
                   </div>
@@ -193,11 +193,11 @@ export default function TeamPage() {
           </div>
 
           {/* Type Distribution */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
-            <h2 className="font-bold text-slate-900 text-base">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-4">
+            <h2 className="font-bold text-slate-900 dark:text-slate-100 text-base">
               {t.team.typeCoverage}
             </h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Total elemental types represented in your Pokémon squad:
             </p>
 
@@ -207,18 +207,18 @@ export default function TeamPage() {
                 .map(([type, count]) => (
                   <div
                     key={type}
-                    className="flex items-center gap-1.5 p-1.5 pr-2.5 rounded-full bg-slate-50 border border-slate-200"
+                    className="flex items-center gap-1.5 p-1.5 pr-2.5 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
                   >
                     <PokemonTypeBadge type={type as any} size="sm" />
-                    <span className="text-xs font-mono font-bold text-slate-700">
+                    <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
                       x{count}
                     </span>
                   </div>
                 ))}
             </div>
 
-            <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl flex items-start gap-2 text-[11px] text-slate-500">
-              <ShieldAlert className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 rounded-xl flex items-start gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+              <ShieldAlert className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
               <span>{t.team.weaknessNotice}</span>
             </div>
           </div>

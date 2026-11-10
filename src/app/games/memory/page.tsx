@@ -211,30 +211,30 @@ export default function MemoryGamePage() {
       />
 
       {/* Stats bar */}
-      <div className="flex items-center justify-between bg-white border border-slate-200 rounded-2xl p-4 shadow-xs text-xs font-bold text-slate-600">
+      <div className="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xs text-xs font-bold text-slate-600 dark:text-slate-400">
         <div className="flex items-center gap-1.5">
-          <Footprints className="w-4 h-4 text-red-600" />
+          <Footprints className="w-4 h-4 text-red-600 dark:text-red-400" />
           <span>
-            {t.games.memory.moves}: <strong className="font-mono text-sm text-slate-900">{moves}</strong>
+            {t.games.memory.moves}: <strong className="font-mono text-sm text-slate-900 dark:text-slate-100">{moves}</strong>
           </span>
         </div>
 
         <div className="flex items-center gap-1.5">
-          <span className="text-slate-400">Pairs:</span>
-          <strong className="font-mono text-sm text-slate-900">
+          <span className="text-slate-400 dark:text-slate-500">Pairs:</span>
+          <strong className="font-mono text-sm text-slate-900 dark:text-slate-100">
             {matchedPairs} / {numPairs}
           </strong>
         </div>
 
         <div className="flex items-center gap-1.5">
-          <Timer className="w-4 h-4 text-slate-400" />
-          <strong className="font-mono text-sm text-slate-900">{formatTime(seconds)}</strong>
+          <Timer className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+          <strong className="font-mono text-sm text-slate-900 dark:text-slate-100">{formatTime(seconds)}</strong>
         </div>
       </div>
 
       {/* Grid of memory cards */}
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center py-24 text-slate-400 space-y-3">
+        <div className="flex flex-col items-center justify-center py-24 text-slate-400 dark:text-slate-500 space-y-3">
           <Loader2 className="w-8 h-8 animate-spin text-red-600" />
           <span className="text-xs font-semibold">{t.common.loading}</span>
         </div>
@@ -256,8 +256,8 @@ export default function MemoryGamePage() {
               onClick={() => handleCardClick(idx)}
               className={`aspect-square rounded-2xl p-3 flex flex-col items-center justify-center transition-all duration-300 border shadow-xs cursor-pointer select-none ${
                 card.isFlipped || card.isMatched
-                  ? "bg-white border-slate-300 rotate-0"
-                  : "bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700 hover:scale-102"
+                  ? "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 rotate-0"
+                  : "bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700 dark:border-slate-800 hover:scale-102"
               } ${card.isMatched ? "ring-2 ring-emerald-400 opacity-90" : ""}`}
               aria-label={card.isFlipped || card.isMatched ? card.name : "Hidden Card"}
             >
@@ -271,7 +271,7 @@ export default function MemoryGamePage() {
                     unoptimized
                     className="object-contain"
                   />
-                  <span className="text-[11px] font-bold text-slate-700 mt-1 capitalize truncate max-w-[80px]">
+                  <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 mt-1 capitalize truncate max-w-[80px]">
                     {card.name}
                   </span>
                 </div>

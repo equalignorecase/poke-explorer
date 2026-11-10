@@ -143,25 +143,25 @@ export default function TypeMatchPage() {
       />
 
       {question && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-8">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xs space-y-8">
           {/* Question Visualizer */}
           <div className="text-center space-y-4">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
               Type Matchup
             </span>
 
             <div className="flex items-center justify-center gap-3">
               <div className="flex flex-col items-center">
-                <span className="text-[11px] font-bold text-slate-400 uppercase mb-1">
+                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1">
                   Attack Move
                 </span>
                 <PokemonTypeBadge type={question.moveType} size="lg" />
               </div>
 
-              <div className="text-slate-300 font-bold px-2 text-xl">vs</div>
+              <div className="text-slate-300 dark:text-slate-600 font-bold px-2 text-xl">vs</div>
 
               <div className="flex flex-col items-center">
-                <span className="text-[11px] font-bold text-slate-400 uppercase mb-1">
+                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1">
                   Defending Pokémon
                 </span>
                 <div className="flex gap-1.5">
@@ -172,13 +172,13 @@ export default function TypeMatchPage() {
               </div>
             </div>
 
-            <p className="text-sm font-semibold text-slate-700 max-w-md mx-auto">
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 max-w-md mx-auto">
               How effective is a{" "}
-              <span className="font-bold uppercase text-red-600">
+              <span className="font-bold uppercase text-red-600 dark:text-red-400">
                 {question.moveType}
               </span>
               -type move against a{" "}
-              <span className="font-bold uppercase text-slate-900">
+              <span className="font-bold uppercase text-slate-900 dark:text-slate-100">
                 {question.defenderTypes.join(" / ")}
               </span>{" "}
               Pokémon?
@@ -188,12 +188,12 @@ export default function TypeMatchPage() {
           {/* 4 Choices */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {choices.map((c) => {
-              let btnClass = "bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-800";
+              let btnClass = "bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200";
               if (isAnswered) {
                 if (c.category === question.category) {
-                  btnClass = "bg-emerald-50 border-emerald-500 text-emerald-800 ring-2 ring-emerald-200 font-bold";
+                  btnClass = "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-800 dark:text-emerald-300 ring-2 ring-emerald-200 dark:ring-emerald-900 font-bold";
                 } else if (c.category === selectedChoice) {
-                  btnClass = "bg-rose-50 border-rose-500 text-rose-800 line-through ring-2 ring-rose-200 font-bold";
+                  btnClass = "bg-rose-50 dark:bg-rose-950/40 border-rose-500 text-rose-800 dark:text-rose-300 line-through ring-2 ring-rose-200 dark:ring-rose-900 font-bold";
                 }
               }
 
@@ -208,7 +208,7 @@ export default function TypeMatchPage() {
                   <div className="flex items-center gap-2">
                     <span>{c.label}</span>
                   </div>
-                  <span className="font-mono text-xs font-bold text-slate-400 bg-white px-2 py-0.5 rounded-lg border border-slate-200">
+                  <span className="font-mono text-xs font-bold text-slate-400 dark:text-slate-400 bg-white dark:bg-slate-900 px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700">
                     {c.badge}
                   </span>
                 </button>
@@ -218,12 +218,12 @@ export default function TypeMatchPage() {
 
           {/* Post-answer feedback */}
           {isAnswered && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2 text-xs">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="text-slate-600">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span className="text-slate-600 dark:text-slate-400">
                   Exact Multiplier:{" "}
-                  <strong className="text-slate-900 font-mono text-sm">
+                  <strong className="text-slate-900 dark:text-slate-100 font-mono text-sm">
                     {question.multiplier}x
                   </strong>
                 </span>

@@ -164,9 +164,9 @@ export default function SilhouetteChallengePage() {
       />
 
       {/* Silhouette Stage */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col items-center shadow-xs space-y-6">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col items-center shadow-xs space-y-6">
         {isLoading || !currentPokemon ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <div className="flex flex-col items-center justify-center py-20 text-slate-400 dark:text-slate-500 space-y-3">
             <Loader2 className="w-8 h-8 animate-spin text-red-600" />
             <span className="text-xs font-semibold">{t.common.loading}</span>
           </div>
@@ -175,7 +175,7 @@ export default function SilhouetteChallengePage() {
             <div className="py-4 relative flex items-center justify-center">
               <div
                 className={`transition-all duration-500 ${
-                  isAnswered ? "filter-none scale-105" : "brightness-0 contrast-200"
+                  isAnswered ? "filter-none scale-105" : "brightness-0 dark:invert contrast-200"
                 }`}
               >
                 <Image
@@ -217,8 +217,8 @@ export default function SilhouetteChallengePage() {
 
             {/* Post-answer feedback */}
             {isAnswered && (
-              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100">
-                <span className="text-sm font-bold text-slate-800 font-sans">
+              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                <span className="text-sm font-bold text-slate-800 dark:text-slate-200 font-sans">
                   {t.games.silhouette.revealText} {getDisplayName(currentPokemon)}!
                 </span>
 

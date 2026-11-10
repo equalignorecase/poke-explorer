@@ -5,7 +5,18 @@ import userEvent from "@testing-library/user-event";
 import { FavoritesProvider, useFavorites } from "@/context/FavoritesContext";
 import { TeamProvider, useTeam } from "@/context/TeamContext";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
+import { ThemeProvider, useTheme } from "@/context/ThemeContext";
 import { PokemonListItem } from "@/lib/pokeapi/types";
+
+function ThemeTestConsumer() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <div>
+      <span data-testid="current-theme">{theme}</span>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div>
+  );
+}
 
 function FavoritesTestConsumer() {
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
@@ -119,5 +130,27 @@ describe("Integration Tests: Contexts & State Management", () => {
     await user.click(screen.getByText("Set English"));
     expect(screen.getByTestId("current-lang").textContent).toBe("en");
     expect(screen.getByTestId("nav-home").textContent).toBe("Home");
+  });
+
+  it("toggles ephemeral theme state and toggles html dark class", async () => {
+    const user = userEvent.setup();
+    render(
+      <ThemeProvider>
+        <ThemeTestConsumer />
+      </ThemeProvider>
+    );
+
+    const initialTheme = screen.getByTestId("current-theme").textContent;
+    expect(["light", "dark"]).toContain(initialTheme);
+
+    await user.click(screen.getByText("Toggle Theme"));
+    const toggledTheme = screen.getByTestId("current-theme").textContent;
+    expect(toggledTheme).not.toBe(initialTheme);
+
+    if (toggledTheme === "dark") {
+      expect(document.documentElement.classList.contains("dark")).toBe(true);
+    } else {
+      expect(document.documentElement.classList.contains("dark")).toBe(false);
+    }
   });
 });

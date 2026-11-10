@@ -212,9 +212,9 @@ export default function CryQuizPage() {
       />
 
       {/* Cry Audio Stage */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col items-center shadow-xs space-y-6">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col items-center shadow-xs space-y-6">
         {isLoading || !currentPokemon ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <div className="flex flex-col items-center justify-center py-20 text-slate-400 dark:text-slate-500 space-y-3">
             <Loader2 className="w-8 h-8 animate-spin text-red-600" />
             <span className="text-xs font-semibold">{t.common.loading}</span>
           </div>
@@ -227,15 +227,15 @@ export default function CryQuizPage() {
                 onClick={playCry}
                 className={`w-28 h-28 rounded-3xl flex items-center justify-center transition-all shadow-md cursor-pointer active:scale-95 ${
                   isPlayingAudio
-                    ? "bg-red-600 text-white animate-pulse ring-4 ring-red-200"
-                    : "bg-slate-900 text-white hover:bg-slate-800"
+                    ? "bg-red-600 text-white animate-pulse ring-4 ring-red-200 dark:ring-red-900"
+                    : "bg-slate-900 dark:bg-slate-800 text-white hover:bg-slate-800 dark:hover:bg-slate-700"
                 }`}
                 aria-label="Play Pokémon cry audio"
               >
                 <Volume2 className="w-12 h-12" />
               </button>
 
-              <span className="text-xs font-bold text-slate-500">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
                 {isPlayingAudio ? "Playing Sound..." : t.games.cry.listenPrompt}
               </span>
             </div>
@@ -279,8 +279,8 @@ export default function CryQuizPage() {
 
             {/* Post-answer feedback */}
             {isAnswered && (
-              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100">
-                <span className="text-sm font-bold text-slate-800 font-sans">
+              <div className="w-full flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                <span className="text-sm font-bold text-slate-800 dark:text-slate-200 font-sans">
                   {selectedAnswer === currentPokemon.id
                     ? `${t.games.guess.correct} ${getDisplayName(currentPokemon)}!`
                     : `${t.games.guess.wrong} ${getDisplayName(currentPokemon)}.`}

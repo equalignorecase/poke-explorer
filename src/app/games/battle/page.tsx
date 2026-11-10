@@ -110,8 +110,8 @@ export default function BattleSimulatorPage() {
       />
 
       {/* Champion Quick Selector */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs font-bold text-slate-500">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-xs flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
           {t.games.battle.choosePokemon}:
         </span>
         <div className="flex flex-wrap gap-2">
@@ -126,7 +126,7 @@ export default function BattleSimulatorPage() {
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 selectedChampionId === c.id
                   ? "bg-red-600 text-white shadow-xs"
-                  : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                  : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"
               }`}
             >
               {c.name}
@@ -271,8 +271,8 @@ export default function BattleSimulatorPage() {
           </div>
 
           {/* Action Control Panel */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-4">
+            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
               Battle Actions (Turn {battleState.turn + 1})
             </span>
 
@@ -282,13 +282,13 @@ export default function BattleSimulatorPage() {
                 type="button"
                 disabled={Boolean(battleState.winner)}
                 onClick={() => handleAction("quick")}
-                className="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
+                className="p-4 bg-slate-50 dark:bg-slate-800/70 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
               >
-                <div className="flex items-center gap-2 text-red-600 font-bold text-sm mb-1">
+                <div className="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-sm mb-1">
                   <Zap className="w-4 h-4" />
                   <span>{t.games.battle.quickAttack}</span>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
                   Priority +1 strike with lower base power (35).
                 </p>
               </button>
@@ -298,13 +298,13 @@ export default function BattleSimulatorPage() {
                 type="button"
                 disabled={Boolean(battleState.winner)}
                 onClick={() => handleAction("power")}
-                className="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
+                className="p-4 bg-slate-50 dark:bg-slate-800/70 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
               >
-                <div className="flex items-center gap-2 text-amber-600 font-bold text-sm mb-1">
+                <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-sm mb-1">
                   <Flame className="w-4 h-4" />
                   <span>{t.games.battle.powerAttack}</span>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
                   Heavy impact with high base power (65).
                 </p>
               </button>
@@ -314,13 +314,13 @@ export default function BattleSimulatorPage() {
                 type="button"
                 disabled={Boolean(battleState.winner)}
                 onClick={() => handleAction("defend")}
-                className="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
+                className="p-4 bg-slate-50 dark:bg-slate-800/70 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-left transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
               >
-                <div className="flex items-center gap-2 text-blue-600 font-bold text-sm mb-1">
+                <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-sm mb-1">
                   <Shield className="w-4 h-4" />
                   <span>{t.games.battle.defend}</span>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
                   Takes defensive stance, halving incoming damage.
                 </p>
               </button>
@@ -328,8 +328,8 @@ export default function BattleSimulatorPage() {
           </div>
 
           {/* Battle Logs */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-3">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-3">
+            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
               {t.games.battle.battleLog}
             </span>
             <div className="max-h-48 overflow-y-auto space-y-2 pr-2 text-xs">
@@ -341,11 +341,11 @@ export default function BattleSimulatorPage() {
                     key={i}
                     className={`p-2.5 rounded-xl border ${
                       log.actor === "player"
-                        ? "bg-slate-50 border-slate-200 text-slate-800"
-                        : "bg-red-50/50 border-red-100 text-slate-800"
+                        ? "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200"
+                        : "bg-red-50/50 dark:bg-red-950/30 border-red-100 dark:border-red-900 text-slate-800 dark:text-slate-200"
                     }`}
                   >
-                    <span className="font-mono text-[10px] text-slate-400 mr-2">
+                    <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 mr-2">
                       [T{log.turn}]
                     </span>
                     <span>{log.text}</span>
@@ -355,7 +355,7 @@ export default function BattleSimulatorPage() {
           </div>
 
           {/* Simulator limitation disclaimer */}
-          <div className="p-4 bg-slate-100 border border-slate-200 rounded-2xl flex items-start gap-2.5 text-xs text-slate-600">
+          <div className="p-4 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300">
             <ShieldAlert className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
             <p>{t.games.battle.disclaimer}</p>
           </div>
